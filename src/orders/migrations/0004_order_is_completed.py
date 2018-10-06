@@ -7,11 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('newsletter', '0001_initial'),
+        ('orders', '0003_order'),
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='SignUp',
+        migrations.AddField(
+            model_name='order',
+            name='is_completed',
+            field=models.BooleanField(default=True),
         ),
     ]
