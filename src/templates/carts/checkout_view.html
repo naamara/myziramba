@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	{% if not request.session.user_checkout_id %}
+	{% if not user.is_authenticated %}
+		<div class="col-sm-6">
+			<p class="lead">Continue as guest</p>
+			<form action="" method="POST">{% csrf_token %}
+				{{guest_form|crispy}}
+				<button type="submit" class="btn btn-success">Continue as guest</button>
+			</form>
+		</div>
+		<div class="col-sm-6">
+			<form action="{% url 'auth_login' %}" method="POST">{% csrf_token %}
+				{{login_form | crispy}}
+				<input type="hidden" name="next" value="{{request.build_absolute_uri}}" />
+				<button type="submit" class="btn btn-success">Login</button>
+			</form>
+		</div>
+	{% endif %}
+	{% endif %}
+	{% if order %}
+	<div class="col-sm-4 col-sm-offset-4 text-center">
+		<p class="lead">Choose payment Options</p>
+		<table class="table">
+			<tr>
+				{% with count=order.cart.count %}
+				<td colspan="4">{{count}} Item{{count|pluralize}}<br>
+				{% endwith %}
+				{% for item in order.cart.cartitem_set.all %}
+				<b>{{item.item_name}}</b><br>
+				{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<td>Cart Price:</td>
+				<td>{{order.cart.cart_price}}</td>
+			</tr>
+			<tr>
+				<td>Shipping:</td>
+				<td>{{order.shipping_price}}</td>
+			</tr>
+			<tr>
+				<td>Total:</td>
+				<td>{{order.order_total}}</td>
+			</tr>
+			<tr>
+				<td colspan="4"><b>Billing Address:</b><br>
+				{{order.billing_address.get_full_address}}</td>
+			</tr>
+			<tr>
+				<td colspan="4"><b>Shipping Address:</b><br>
+				{{order.shipping_address.get_full_address}}</td>
+			</tr>
+			<tr>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				  <input type="hidden" name="cmd" value="_xclick">
+				  <input type="hidden" name="business" value="seller@designerfotos.com">
+				  <input type="hidden" name="item_name" value="Memorex 256MB Memory Stick">
+				  <input type="hidden" name="item_number" value="MEM32507725">
+				  <input type="hidden" name="amount" value="3">
+				  <input type="hidden" name="tax" value="1">
+				  <input type="hidden" name="quantity" value="1">
+				  <input type="hidden" name="currency_code" value="USD">
+
+				  <!-- Enable override of buyers's address stored with PayPal . -->
+				  <input type="hidden" name="address_override" value="1">
+				  <!-- Set variables that override the address stored with PayPal. -->
+				  <input type="hidden" name="first_name" value="John">
+				  <input type="hidden" name="last_name" value="Doe">
+				  <input type="hidden" name="address1" value="345 Lark Ave">
+				  <input type="hidden" name="city" value="San Jose">
+				  <input type="hidden" name="state" value="CA">
+				  <input type="hidden" name="zip" value="95121">
+				  <input type="hidden" name="country" value="US">
+				  <input type="image" name="submit"
+				    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+				    alt="PayPal - The safer, easier way to pay online">
+				</form>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<form method="POST" action="{% url 'confirm_order' %}">{% csrf_token %}
+						<input type="hidden" name="complete_order" value="true">
+						<button class="btn" type="submit">Confirm and complete order</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	{% endif %}
+{% endblock %}ddre
