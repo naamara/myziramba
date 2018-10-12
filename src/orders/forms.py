@@ -33,4 +33,4 @@ class AddressForm(forms.Form):
 class UserAddressForm(forms.ModelForm):
     class Meta:
         model = UserAddress
-        fields = ('type', 'address', 'state', 'zipcode')
+        fields = ('type', 'address', 'state', 'zipcode', 'city')

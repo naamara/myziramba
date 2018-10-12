@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^contact/$', 'accounts.views.contact', name='contact'),
     url(r'^register/$', 'accounts.views.register', name='register'),
     url(r'^signin/$', 'accounts.views.signin', name='signin'),
+    url(r'^useraddress/$', 'accounts.views.Useraddress', name='useraddress'),
     url(r'^about/$', 'ecommerce.views.about', name='about'),
     # url(r'^blog/', include('blog.urls')),
 
@@ -23,3 +24,6 @@ urlpatterns = [
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+

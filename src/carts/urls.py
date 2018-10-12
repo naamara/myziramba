@@ -6,6 +6,9 @@ from orders.views import AddressFormView, UserAddressCreateView, ConfirmOrderVie
 urlpatterns = [
     url(r'^$', views.CartCreateView.as_view(), name='create_cart'),
     url(r'^view/$', views.CartDetailView.as_view(), name='cart_detail'),
+
+    url(r'^charge/', views.charge, name='charge'),
+
     url(r'^checkout/$', views.CheckoutView.as_view(), name='cart_checkout'),
     url(r'^address/$', AddressFormView.as_view(), name='address'),   
     url(r'^address/add/$', UserAddressCreateView.as_view(), name='add_address'),

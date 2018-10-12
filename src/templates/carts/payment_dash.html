@@ -63,48 +63,28 @@
 	<tr>
 		<td>Total Pay</td><td>{{total_price}}</td>
 		</td>
-	</tr>
-</table>
-
-<table class="table">
-	<tr>
-			<form action="{% url 'cart_detail' %}" method="POST">{% csrf_token %}
-			
-			
-			<p>Billing Address:<br>
-        
-            <input type="text" placeholder="Enter Address." name="type"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
 
 
-            <p>State:<br>
-        
-            <input type="text" placeholder="State" name="state"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
-
-            <p>zipcode:<br>
-        
-            <input type="text" placeholder="Zipcode" name="zipcode"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
-
-            <p>City:<br>
-        
-            <input type="text" placeholder="City" name="city"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
-
-       
-            <p>
-            <input type="submit" id="submit" class="btn btn-success" value="Proceed with Payment" name="SUBMIT" required>
-           </p>
-   
-
+<form action="{% url 'charge' %}" method="POST">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_R6CDfU0WxOYMW08if13B5VfT" 
+        data-description="A Django Charge"
+        data-amount="500"
+        data-locale="auto"
+        >
+    </script>
 </form>
 
-		<!-- <tr>
+
+
+	</tr>
+
+</table>
+
 		<td colspan="4" id="cart-price" class="text-right"> Ugx {{object.cart_price}}<br>
-		<a href="{% url 'charge' %}">Checkout</a>
+		<a href="{% url 'cart_checkout' %}">Checkout</a>
 		</td>
- -->
+
 
 		
 

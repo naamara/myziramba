@@ -103,3 +103,13 @@ class ProductFeatured(models.Model):
 
     def __unicode__(self):
         return self.product.title
+
+
+class ProductCharged(models.Model):
+    amount = models.PositiveIntegerField()
+    source = models.CharField(max_length=100)
+    currency = models.CharField(max_length=100)
+    description = models.TextField(max_length=500, blank=True, null=True)
+    
+
+   

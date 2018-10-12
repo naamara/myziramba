@@ -62,7 +62,8 @@ INSTALLED_APPS = (
     #my apps
     'accounts',
     'products',
-    'carts'
+    'carts',
+    'orders'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -146,3 +147,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
+
+
+
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_SECRET_KEY", "pk_test_R6CDfU0WxOYMW08if13B5VfT")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_h6dnQ43clBgHoTYAInAU6sMk")

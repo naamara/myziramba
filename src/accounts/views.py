@@ -3,11 +3,16 @@ from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponseRedirect
 
 from .forms import ContactForm, RegisterForm, AuthenticationForm
+from orders.forms import GuestCheckoutForm
 from products.models import ProductFeatured, Product
 import ecommerce.settings as settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.core.urlresolvers import reverse
+from  orders.models import UserAddress, UserCheckout,  Order
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from carts.models import Cart
 
 
 # Create your views here.
@@ -130,3 +135,53 @@ def signin(request):
             return render(request, "home.html", context)
             # extradata =
     return render_view(request, 'login.html', {})
+
+
+
+
+def Useraddress(request):
+    '''
+    handles the signup page
+    @request  request object
+    '''
+    user_checkout = request.session.get('user_checkout_id')
+    useradd = ''
+    guest_form = GuestCheckoutForm
+    if request.method == 'POST':
+      
+        type_text = request.POST['type']
+        state = request.POST['state']
+        zipcode = request.POST['zipcode']
+        city = request.POST['city']
+        user_checkout = request.session.get('user_checkout_id')
+        
+
+        if 'cart_id' not in request.session:
+            return redirect('/')
+        cart = Cart.objects.get(id=request.session['cart_id'])
+        context = {
+        'login_form': AuthenticationForm(),
+        'object': cart,
+        'guest_form': guest_form,
+        }
+
+        if not user_checkout:
+            if request.user.is_authenticated():
+                user_checkout, created  = UserCheckout.objects.get_or_create(user=request.user)
+                request.session['user_checkout_id'] = user_checkout.id
+                useradd = UserAddress(user=user_checkout, type=type_text,state=state,zipcode=zipcode,city=city)
+                useradd.save()
+        if user_checkout:
+
+            if not 'order_id' in request.session:
+                order = Order.objects.create(user_id=user_checkout,cart_id=cart.id)
+                request.session['order_id'] = order.id
+            else:
+                order = Order.objects.get(id=request.session['order_id'])
+            context['order'] = order
+        return render(request, "carts/checkout_view.html", context)
+
+               
+            
+            
+

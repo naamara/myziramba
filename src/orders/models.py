@@ -26,9 +26,10 @@ class UserAddress(models.Model):
         )
     user = models.ForeignKey(UserCheckout)
     type = models.CharField(max_length=100, choices=ADDRESS_TYPES)
-    address = models.CharField(max_length=300)
-    state =  models.CharField(max_length=100)
+    address = models.CharField(max_length=300, null=True, blank=True)
+    state =  models.CharField(max_length=100, null=True, blank=True)
     zipcode = models.PositiveIntegerField()
+    city = models.CharField(max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return self.address

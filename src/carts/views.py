@@ -11,9 +11,9 @@ from rest_framework import status
 
 from . import models
 from products import models as product_models
-from orders.forms import GuestCheckoutForm
-from orders.models import UserCheckout, Order
-
+from orders.forms import GuestCheckoutForm, UserAddressForm
+from orders.models import UserCheckout, Order, UserAddress
+from ecommerce import settings
 
 class CartCreateView(TemplateView, APIView):
     """ add item to cart request handler """
@@ -63,16 +63,57 @@ class CartCreateView(TemplateView, APIView):
 
 
 class CartDetailView(TemplateView):
+    addr_form= None
     template_name = 'carts/view.html'
+    
 
     def get(self, request):
         if 'cart_id' not in request.session:
             return redirect('/')
         cart = models.Cart.objects.get(id=request.session['cart_id'])
         total_price = models.Cart.objects.get(id=request.session['cart_id'])
-
+        request.session['cart_id'] 
         total_price=total_price.cart_price 
-        return render(request, self.template_name, {'object': cart, 'total_price':total_price })
+        request.session['total_price']  = total_price
+        addr_form= UserAddressForm
+        return render(request, self.template_name, {'object': cart,'addr_form':addr_form, 'total_price':total_price })
+    
+    def get_success_url(self):
+        return reverse('cart_checkout')
+
+    def get_user_checkout(self):
+        user_checkout_id = self.request.session['user_checkout_id']
+        return UserCheckout.objects.get(id=user_checkout_id)
+
+    def post(self, request):
+        type_n = request.POST['type']
+        state = request.POST['state']
+        zipcode = request.POST['zipcode']
+        city = request.POST['city']
+        user_checkout, created  = UserCheckout.objects.get_or_create(user=request.user)
+        request.session['user_checkout_id'] = user_checkout.id
+        
+        user_add = UserAddress(user=user_checkout,type=type_n, state=state,address=0,zipcode=zipcode,city=city) 
+        user_add.save()   
+       
+        if user_add:
+            cart = models.Cart.objects.get(id=request.session['cart_id'])
+            total_price = models.Cart.objects.get(id=request.session['cart_id'])
+            request.session['cart_id'] 
+            total_price=total_price.cart_price 
+            request.session['total_price']  = total_price
+            addr_form= UserAddressForm
+            return render(request, 'carts/payment_dash.html', {'object': cart,"stripe_key": settings.STRIPE_PUBLIC_KEY, 'addr_form':addr_form, 'total_price':total_price })
+        else:
+            context = {
+                'login_form': AuthenticationForm(),
+                'guest_form': form
+                }
+            return render(request, self.template_name, context)
+
+
+
+
 
 
 class CheckoutView(TemplateView, FormMixin):
@@ -124,6 +165,81 @@ class CheckoutView(TemplateView, FormMixin):
     def get_success_url(self):
         return reverse('cart_checkout')
 
+
+
+
+
+def payment_form(request):
+
+    context = { "stripe_key": settings.STRIPE_PUBLIC_KEY }
+    return render(request, "yourtemplate.html", context)
+
+
+
+
+
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def checkout2(request):
+
+    cart = models.Cart.objects.get(id=request.session['cart_id'])
+    total_price = models.Cart.objects.get(id=request.session['cart_id'])
+    
+    total_price=total_price.cart_price 
+    request.session['total_price']  = total_price
+    item_name =cart.items
+    new_charge = ProductCharged(
+        amount = total_price,
+        currency  = request.session['cart_id']
+    )
+
+
+    if request.method == "POST":
+        token    = request.POST.get("stripeToken")
+
+    try:
+        charge  = stripe.Charge.create(
+            amount      = total_price,
+            currency    = "usd",
+            source      = token,
+            description = item_name
+        )
+
+        new_car.charge_id   = charge.id
+
+    except stripe.error.CardError as ce:
+        return False, ce
+
+    else:
+        new_charge.save()
+        return redirect("thank_you_page")
+        # The payment was successfully processed, the user's card was charged.
+        # You can now redirect the user to another page or whatever you want
+
+
+def charge(request): # new
+    if request.method == 'POST':
+
+        cart = models.Cart.objects.get(id=request.session['cart_id'])
+        total_price = models.Cart.objects.get(id=request.session['cart_id'])
+        
+        total_price=total_price.cart_price 
+        request.session['total_price']  = total_price
+        item_name =cart.items
+        new_charge = ProductCharged(
+            amount = total_price,
+            currency  = request.session['cart_id']
+    )   
+        new_charge.save()
+
+        charge = stripe.Charge.create(
+            amount=total_price,
+            currency='usd',
+            description='A Django charge',
+            source=request.POST['stripeToken']
+        )
+        return render(request, 'payment_dash.html')
 
 
 
