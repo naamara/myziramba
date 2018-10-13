@@ -65,17 +65,19 @@
 		</td>
 
 
+
 <form action="{% url 'charge' %}" method="POST">
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_R6CDfU0WxOYMW08if13B5VfT" 
-        data-description="A Django Charge"
-        data-amount="500"
-        data-locale="auto"
-        >
-    </script>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_R6CDfU0WxOYMW08if13B5VfT"
+    data-amount="999"
+    data-name="mandela"
+    data-description="Example charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-currency="usd"
+    data-locale="auto">
+  </script>
 </form>
-
-
 
 	</tr>
 

@@ -13,7 +13,9 @@ from . import models
 from products import models as product_models
 from orders.forms import GuestCheckoutForm, UserAddressForm
 from orders.models import UserCheckout, Order, UserAddress
-from ecommerce import settings
+from django.conf import settings
+import stripe
+stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
 
 class CartCreateView(TemplateView, APIView):
     """ add item to cart request handler """
@@ -178,8 +180,6 @@ def payment_form(request):
 
 
 
-import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def checkout2(request):
 
@@ -233,13 +233,15 @@ def charge(request): # new
     )   
         new_charge.save()
 
+        print "Token " + request.POST['stripeToken']
+
         charge = stripe.Charge.create(
             amount=total_price,
             currency='usd',
-            description='A Django charge',
+            description='A Zarambara charge',
             source=request.POST['stripeToken']
         )
-        return render(request, 'payment_dash.html')
+        return render(request, 'carts/charge.html')
 
 
 
