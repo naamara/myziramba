@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^contact/$', 'accounts.views.contact', name='contact'),
     url(r'^register/$', 'accounts.views.register', name='register'),
     url(r'^signin/$', 'accounts.views.signin', name='signin'),
+
+    url(r'^completeauth0/$', 'accounts.views.completeauth0', name='completeauth0'),
     url(r'^useraddress/$', 'accounts.views.Useraddress', name='useraddress'),
     url(r'^about/$', 'ecommerce.views.about', name='about'),
     # url(r'^blog/', include('blog.urls')),
@@ -18,6 +20,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^products/', include('products.urls')),
     url(r'^cart/', include('carts.urls')),
+    url(r'^auth0login/', include('auth0login.urls')),
 
 ]
 

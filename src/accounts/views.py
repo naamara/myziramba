@@ -24,6 +24,9 @@ def home(request):
         "products": products
     }
 
+    if request.GET:
+        print  request.GET
+
     return render(request, "home.html", context)
 
 
@@ -136,7 +139,21 @@ def signin(request):
             # extradata =
     return render_view(request, 'login.html', {})
 
+def completeauth0(request):
+    '''
+    handles the signup page
+    @request  request object
+    '''
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+    context = {
+        "featured_image": featured_image,
+        "products": products
+    }
 
+    
+    return render(request, "home.html", context)
+     
 
 
 def Useraddress(request):

@@ -32,9 +32,9 @@
         {% if request.user.is_authenticated %}
           <li><a href="{% url 'auth_logout' %}">Logout</a></li>
         {% else %}
-          {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+          {% if not request.user.is_authenticated and not "login/auth0" in request.get_full_path %}
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
+              <a  href="/login/auth0" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <form class='navbar-form' method='POST' action='{% url "signin" %}'>{% csrf_token %}
                   <div class='form-group'>
@@ -43,13 +43,19 @@
                   <div class='form-group'>
                     <input type='password' class='form-control' name='password' placeholder='Password' />
                   </div>
-                  <button type='submit' class='btn btn-default btn-block'>Login</button>
+                <!--   <button type='submit' class='btn btn-default btn-block'>Login</button> -->
                 </form>
                 <p class="text-center"><a href="{% url 'auth_password_reset' %}">Forget Password</a></p>
               </ul>
             </li>
           {% endif %}
           <li><a href="{% url 'register' %}">Register</a></li>
+
+         <!--  <a  href="{% url 'login' %}"  role="button" aria-expanded="false">Login <span class="caret"></span></a> -->
+
+          <button onclick="lock.show();">Login</button>
+
+
         {% endif %}
       </ul>
       </div><!--/.nav-collapse -->

@@ -63,7 +63,11 @@ INSTALLED_APPS = (
     'accounts',
     'products',
     'carts',
-    'orders'
+    'orders',
+    'social_django',
+    'auth0login',
+    'django_auth0',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,12 +95,17 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_auth0.context_processors.auth0',
             ],
         },
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
+
 
 
 # Database
@@ -146,13 +155,44 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
-
-AUTHENTICATION_BACKENDS = (
-    ('django.contrib.auth.backends.ModelBackend'),
-)
-
-
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_SECRET_KEY", "pk_test_R6CDfU0WxOYMW08if13B5VfT")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_h6dnQ43clBgHoTYAInAU6sMk")
+
+
+SOCIAL_AUTH_TRAILING_SLASH = False                    # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'mandela.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'lAG0SJNnzarI_gkFbJRObOuUPhxcJoUn'
+SOCIAL_AUTH_AUTH0_SECRET = 'f702LmuoQklLi1MQrwvTuw1x4twKK55z5LFca2LVju8kAlLBx7IFBqNyUGrQjh8U'
+SOCIAL_AUTH_AUTH0_CALLBACK_URL = 'http://127.0.0.1:8000/complete/auth0'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile'
+]
+
+AUTHENTICATION_BACKENDS = {
+    'auth0login.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+
+
+AUTHENTICATION_BACKENDS = [
+    'django_auth0.auth_backend.Auth0Backend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+AUTH0_DOMAIN = 'mandela.auth0.com'
+AUTH0_CLIENT_ID = 'lAG0SJNnzarI_gkFbJRObOuUPhxcJoUn'
+AUTH0_SECRET = 'f702LmuoQklLi1MQrwvTuw1x4twKK55z5LFca2LVju8kAlLBx7IFBqNyUGrQjh8U'
+AUTH0_CALLBACK_URL = 'http://127.0.0.1:8000/'
+AUTH0_SUCCESS_URL = '/'
+
+
+
+
+#LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+
+
