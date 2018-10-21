@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap_tags %}
 
 {% block jquery %}
 
@@ -35,6 +36,54 @@
 			window.location.reload();
 		});
 	});
+
+
+
+
+
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript">
+      //<![CDATA[
+      Stripe.publishableKey = '{{ publishable }}';
+      //]]>
+  </script>
+  <script type="text/javascript">
+  	
+  	$(function() {
+    $("#payment-form").submit(function() {
+      var form = this;
+      var card = {
+        number:   $("#id_credit_card_number").val(),
+        expMonth: $("#id_expiry_month").val(),
+        expYear:  $("#id_expiry_year").val(),
+        cvc:      $("#id_cvv").val()
+      };
+
+
+    Stripe.createToken(card, function(status, response) {
+        if (status === 200) {
+          $("#credit-card-errors").hide();
+          $("#id_stripe_id").val(response.id);
+          
+          // Prevent the Credit Card Details from being submitted to our server.
+          $("#id_credit_card_number").removeAttr('name');
+          $("#id_cvv").removeAttr('name');
+          $("#id_cvv").removeAttr('name');
+          $("#id_expiry_month").removeAttr('name');
+          $("#id_expiry_year").removeAttr('name');
+
+          form.submit();
+        } else {
+          $("#stripe-error-message").text(response.error.message);
+          $("#credit-card-errors").show();
+          $("#validate_card_btn").attr("disabled", false);
+        }
+    });
+    return false;
+  });
+});
+  </script>
+
 {% endblock %}
 
 
@@ -68,45 +117,34 @@
 
 <table class="table">
 	<tr>
-			<form action="{% url 'cart_detail' %}" method="POST">{% csrf_token %}
-			
-			
-			<p>Billing Address:<br>
+			<form role="form" method="post" id="payment-form" action="{% url 'cart_detail' %}">
         
-            <input type="text" placeholder="Enter Address." name="type"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
+    <legend>Payment Details</legend>
 
+    <div id="credit-card-errors" style="display:none">
+      <div class="alert-message block-message error" id="stripe-error-message"></div>
+    </div>
 
-            <p>State:<br>
-        
-            <input type="text" placeholder="State" name="state"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
+    <div class="form-group col-md-6">
+        {{ order_form }}
+    </div>
 
-            <p>zipcode:<br>
-        
-            <input type="text" placeholder="Zipcode" name="zipcode"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
+    <div class="form-group col-md-6">
+        {{ payment_form }}
+    </div>
 
-            <p>City:<br>
-        
-            <input type="text" placeholder="City" name="city"  style="width:260px;height:30px;padding: 7px;" />
-            </p>
+    {% csrf_token %}
+    <br>
+    <div class="form-group col-md-12">
+      <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+    </div>
 
-       
-            <p>
-            <input type="submit" id="submit" class="btn btn-success" value="Proceed with Payment" name="SUBMIT" required>
-           </p>
+    </form>
    
 
 </form>
 
-		<!-- <tr>
-		<td colspan="4" id="cart-price" class="text-right"> Ugx {{object.cart_price}}<br>
-		<a href="{% url 'charge' %}">Checkout</a>
-		</td>
- -->
-
-		
+	
 
 
 	</tr>

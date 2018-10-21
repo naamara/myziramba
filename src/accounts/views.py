@@ -13,8 +13,22 @@ from  orders.models import UserAddress, UserCheckout,  Order
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from carts.models import Cart
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.contrib.auth import logout
+import json
+
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
+
+def about(request):
+    return render(request, "about.html", {})
+    
 # Create your views here.
 def home(request):
     featured_image = ProductFeatured.objects.first()
@@ -139,21 +153,38 @@ def signin(request):
             # extradata =
     return render_view(request, 'login.html', {})
 
-def completeauth0(request):
-    '''
-    handles the signup page
-    @request  request object
-    '''
+
+
+@login_required
+def dashboard(request):
     featured_image = ProductFeatured.objects.first()
     products = Product.objects.all().order_by('?')
     context = {
         "featured_image": featured_image,
         "products": products
     }
-
     
-    return render(request, "home.html", context)
-     
+
+    user = request.user
+    try:
+        auth0user = user.social_auth.get(provider="auth0")
+    except:
+        auth0User = None
+
+   
+    userdata = {
+        'user_id': auth0user.uid,
+        'name': user.first_name,
+        'picture': auth0user.extra_data['picture']
+    }
+    
+    return render(request, 'home.html', {
+        'auth0User': auth0user,
+        'userdata': json.dumps(userdata, indent=4),
+        "featured_image": featured_image,
+        "products": products
+    })
+
 
 
 def Useraddress(request):

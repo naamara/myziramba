@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from crispy_forms.bootstrap import Container
 from crispy_forms.compatibility import integer_types, string_types
 from crispy_forms.exceptions import DynamicError
 from crispy_forms.layout import Fieldset, MultiField
-from crispy_forms.bootstrap import Container
 
 
 class LayoutSlice(object):
@@ -12,7 +12,7 @@ class LayoutSlice(object):
     def __init__(self, layout, key):
         self.layout = layout
         if isinstance(key, integer_types):
-            self.slice = slice(key, key+1, 1)
+            self.slice = slice(key, key + 1, 1)
         else:
             self.slice = key
 
@@ -23,7 +23,7 @@ class LayoutSlice(object):
         """
         if args:
             if isinstance(fields, list):
-                fields= tuple(fields)
+                fields = tuple(fields)
             else:
                 fields = (fields,)
 
@@ -143,12 +143,18 @@ class LayoutSlice(object):
                 else:
                     function(layout_object)
 
-    def update_attributes(self, **kwargs):
+    def update_attributes(self, **original_kwargs):
         """
         Updates attributes of every layout object pointed in `self.slice` using kwargs
         """
         def update_attrs(layout_object):
+            kwargs = original_kwargs.copy()
             if hasattr(layout_object, 'attrs'):
+                if 'css_class' in kwargs:
+                    if 'class' in layout_object.attrs:
+                        layout_object.attrs['class'] += " %s" % kwargs.pop('css_class')
+                    else:
+                        layout_object.attrs['class'] = kwargs.pop('css_class')
                 layout_object.attrs.update(kwargs)
 
         self.map(update_attrs)

@@ -1,4 +1,4 @@
-{% load staticfiles %}
+<!-- {% load staticfiles %}
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -30,11 +30,15 @@
           <a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> <span id="cart-count-badge" class="badge">{{request.session.cart_count}}</span></a>
         </li>
         {% if request.user.is_authenticated %}
-          <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+          <img class="avatar" src="{{ auth0User.extra_data.picture }}"/>
+          <h2>Welcome {{ user.username }}</h2>
+          <pre>{{ userdata }}</pre>
+          <a class="btn btn-primary btn-lg btn-logout btn-block" href="/logout">Logout</a>
         {% else %}
           {% if not request.user.is_authenticated and not "login/auth0" in request.get_full_path %}
             <li class="dropdown">
-              <a  href="/login/auth0" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><button onclick="lock.show();">Login</button> <span class="caret"></span></a>
+              <a class="btn btn-primary btn-lg btn-login btn-block" href="/login/auth0">Log In</a>
+              <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <form class='navbar-form' method='POST' action='{% url "signin" %}'>{% csrf_token %}
                   <div class='form-group'>
@@ -45,7 +49,7 @@
                   </div>
                 <!--   <button type='submit' class='btn btn-default btn-block'>Login</button> -->
                 </form>
-                <p class="text-center"><a href="{% url 'auth_password_reset' %}">Forget Password</a></p>
+             
               </ul>
             </li>
           {% endif %}
@@ -57,4 +61,4 @@
       </ul>
       </div><!--/.nav-collapse -->
     </div>
-  </nav>
+  </nav> -->
