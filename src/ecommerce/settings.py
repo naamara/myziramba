@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'products',
     'carts',
     'orders',
+    'dbbackup',
     
    
 
@@ -233,4 +234,6 @@ LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/dashboard"
 LOGOUT_REDIRECT_URL = "/"
 
-SESSION_IDLE_TIMEOUT = 240*60 
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
