@@ -11,6 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
+
     <title>{% block head_title %}Ziramba Store {% endblock %}</title>
 
     {% include 'head_css.html' %}
@@ -27,6 +28,10 @@
 
   <body>
   {% include 'navbar.html' %}
+ 
+{% load ads_tags %}
+
+{% render_ads_zone 'sidebar' %}
 
   {% if messages %}
     <div class="container">
@@ -42,11 +47,12 @@
 {% block jumbotron %}
           
             {% endblock %}
-    <div class="container">
+    <div class="container img-responsive">
             
 
           
             {% block content %}
+            
 
             {% endblock %}
               

@@ -15,6 +15,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from django.utils.translation import gettext_lazy as _
 #root of project
 
 # Quick-start development settings - unsuitable for production
@@ -42,7 +43,7 @@ to  send for you:
 https://accounts.google.com/displayunlockcaptcha
 '''
 
-
+SITE = 1
 
 # Application definition
 
@@ -52,7 +53,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party apps
@@ -68,6 +68,8 @@ INSTALLED_APPS = (
     'carts',
     'orders',
     'dbbackup',
+    'ads',
+    'sekizai'
     
    
 
@@ -98,6 +100,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai',
                 
             ],
         },
@@ -227,7 +230,7 @@ if AUDIENCE:
 
 AUTHENTICATION_BACKENDS = {
     'auth0login.auth0backend.Auth0',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
 }
 
 LOGIN_URL = "/login/auth0"
@@ -237,3 +240,45 @@ LOGOUT_REDIRECT_URL = "/"
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
+
+
+EMAIL_TEMPLATE_DIR = BASE_DIR + 'templates/email/'
+
+
+ADS_GOOGLE_ADSENSE_CLIENT = 'ca-pub-xxxxxxxxxxxxxxxx'  # OPTIONAL - DEFAULT TO None
+
+ADS_ZONES = {
+    'header': {
+        'name': _('Header'),
+        'ad_size': {
+            'xs': '70x50',
+            'sm': '70x50',
+            'md': '70x50',
+            'lg': '70x50'
+        },
+        'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+    'content': {
+        'name': _('Content'),
+        'ad_size': {
+           'xs': '70x50',
+            'sm': '70x50',
+            'md': '70x50',
+            'lg': '70x50'
+        },
+        'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+    'sidebar': {
+        'name': _('Sidebar'),
+        'ad_size': {
+            'xs': '70x50',
+            'sm': '70x50',
+            'md': '70x50',
+            'lg': '70x50'
+        },
+        'google_adsense_slot': 'xxxxxxxxx',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+}

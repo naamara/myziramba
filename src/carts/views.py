@@ -18,6 +18,10 @@ import stripe
 from django.contrib.auth.decorators import login_required
 from .forms import MakePaymentForm, OrderForm
 from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
 
@@ -159,6 +163,18 @@ class CartDetailView(TemplateView):
 
             if customer.paid:
                 messages.error(request, "You have successfully paid")
+                subjects = {
+                'pending_transaction': 'Pending Transaction',
+                'complete_transaction': 'Transaction Complete',
+                'user_verification': 'User Pending Verification',
+                'user_verification_update': 'User Updated Verification Details',
+                'new_user': '',
+                'rates_error': 'An error occurred while fetching the rates',
+                'server_error': 'Dude your App Just Broke',
+                'contact_us': 'New Contact Message',
+                }
+                msg = EmailMessage('Payement Success', "You have successfully paid", "mandelashaban593@gmail.com", to=[request.user.email,])
+                msg.send()
                 request.session['cart'] = {}
                 return redirect(reverse('products'))
             else:

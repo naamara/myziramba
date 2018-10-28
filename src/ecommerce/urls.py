@@ -16,12 +16,13 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     
     url(r'^products/', include('products.urls')),
     url(r'^cart/', include('carts.urls')),
+    url(r'^ads/', include('ads.urls')),
 
-    url(r'^admin/', admin.site.urls),
+    
     url(r'^', include('auth0login.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls'))
 
