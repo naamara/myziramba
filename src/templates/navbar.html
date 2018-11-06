@@ -9,26 +9,17 @@
             <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+256 775 719 034</div>
             <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">ziramba@gmail.com</a></div>
             <div class="top_bar_content ml-auto">
-              <div class="top_bar_menu">
-                <ul class="standard_dropdown top_bar_dropdown">
-                  <li>
-                    <a href="#">{% if request.user.is_authenticated %}<img class="avatar" src="{{ auth0User.extra_data.picture }}" >Welcome {{ user.username }}<<i class="fas fa-chevron-down"></i></a>
-                    <ul>
-                      <li><a href="#">Kiswahili</a></li>
-                      <li><a href="#">French</a></li>
-                      <li><a href="#">Japanese</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <ul>
-                      <li><a href="#">EUR Euro</a></li>
-                      <li><a href="#">UG Shillings</a></li>
-                      <li><a href="#">GBP British Pound</a></li>
-                    </ul>
-                  </li>
-                </ul>
+             {% if request.user.is_authenticated %}
+             Welcome {{ user.username }}
+             
+              
+               <div class="top_bar_user">
+                <div class="user_icon"><img src="images/user.svg" alt=""></div>
+                <div><a href="/logout">Logout</a></div>
+                 
               </div>
-              {{ userdata }} {% else %}
+
+            {% else %}
 
               <div class="top_bar_user">
                 <div class="user_icon"><img src="images/user.svg" alt=""></div>

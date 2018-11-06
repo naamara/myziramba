@@ -8,8 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Ziramba shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block head_title %}Ziramba Store {% endblock %}</title>
 
+<title>{% block head_title %}Ziramba Store {% endblock %}</title>
 {% include 'head_css.html' %}
 
 </head>
@@ -345,11 +345,14 @@
 
   <!-- Characteristics -->
 
+
   <div class="characteristics">
     <div class="container">
       <div class="row">
 
-      
+      {% block jumbotron %}
+          
+            {% endblock %}
             {% block content %}
             
 
