@@ -28,6 +28,9 @@ import json
 @login_required
 def dashboard(request):
     user = request.user
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+
     auth0user = user.social_auth.get(provider="auth0")
     userdata = {
         'user_id': auth0user.uid,
@@ -37,7 +40,9 @@ def dashboard(request):
 
     return render(request, 'home.html', {
         'auth0User': auth0user,
-        'userdata': json.dumps(userdata, indent=4)
+        'userdata': json.dumps(userdata, indent=4),
+        "featured_image": featured_image,
+        "products": products
     })
 
 

@@ -6,15 +6,23 @@
       <div class="container">
         <div class="row">
           <div class="col d-flex flex-row">
-            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+256 775 719 034</div>
-            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">ziramba@gmail.com</a></div>
+            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{% static 'images/phone.png' %}" alt=""></div>+256 775 719 034</div>
+            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{% static 'images/mail.png' %}" alt=""></div><a href="mailto:fastsales@gmail.com">ziramba@gmail.com</a></div>
+               
+            <div class="top_bar_user">
+                <div class="user_icon"></div>
+                <div><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> <span id="cart-count-badge" class="badge">{{request.session.cart_count}}</span></a></div>
+                 
+              </div>
+
+
             <div class="top_bar_content ml-auto">
              {% if request.user.is_authenticated %}
              Welcome {{ user.username }}
              
               
                <div class="top_bar_user">
-                <div class="user_icon"><img src="images/user.svg" alt=""></div>
+                <div class="user_icon"><img src="{% static 'images/user.svg' %}" alt=""></div>
                 <div><a href="/logout">Logout</a></div>
                  
               </div>
@@ -22,7 +30,7 @@
             {% else %}
 
               <div class="top_bar_user">
-                <div class="user_icon"><img src="images/user.svg" alt=""></div>
+                <div class="user_icon"><img src="{% static 'images/user.svg' %}" alt=""></div>
                 <div><a href="/login/auth0">Log In</a></div>
                  {% endif %}
                  
