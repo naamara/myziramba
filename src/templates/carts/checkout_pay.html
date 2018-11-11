@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+{% block jquery %}
+
+	function updateCart(item, qty, del){
+		var url = "{% url 'create_cart' %}" + '?' + 'item=' + item + '&qty=' + qty;
+		if(del === true){
+			url += '&delete=y';
+		}
+		return $.ajax({
+			url: url,
+			type: 'GET',
+		}).promise();
+	}
+
+	$('.update-cart').on('input', function(){
+		var qty = $(this).val();
+		if(!qty){
+		return ;
+		}
+		var item = $(this).data('item-id');
+		var self = $(this);
+		updateCart(item, qty).then(function(response){
+			console.log(response);
+			$('#cart-count-badge').text(response.cart_count);
+			self.parent().next().text('Rs '+ response.item_total);
+			$('#cart-price').text('Rs ' + response.cart_price);
+		});
+	});
+
+	$('.remove-item').click(function(event){
+		console.log($(this));
+		var item = $(this).data('item-id');
+		updateCart(item, 1, true).then(function(response){
+			window.location.reload();
+		});
+	});
+
+
+
+
+
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript">
+      //<![CDATA[
+      Stripe.publishableKey = 'pk_test_R6CDfU0WxOYMW08if13B5VfT';
+      //]]>
+  </script>
+  <script type="text/javascript">
+  	
+
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript">
+      //<![CDATA[
+      Stripe.publishableKey = '{{ publishable }}';
+      //]]>
+  </script>
+  <script type="text/javascript">
+    
+    $(function() {
+    $("#payment-form").submit(function() {
+      var form = this;
+      var card = {
+        number:   $("#id_credit_card_number").val(),
+        expMonth: $("#id_expiry_month").val(),
+        expYear:  $("#id_expiry_year").val(),
+        cvc:      $("#id_cvv").val()
+      };
+
+
+    Stripe.createToken(card, function(status, response) {
+        if (status === 200) {
+          $("#credit-card-errors").hide();
+          $("#id_stripe_id").val(response.id);
+          
+          // Prevent the Credit Card Details from being submitted to our server.
+          $("#id_credit_card_number").removeAttr('name');
+          $("#id_cvv").removeAttr('name');
+          $("#id_cvv").removeAttr('name');
+          $("#id_expiry_month").removeAttr('name');
+          $("#id_expiry_year").removeAttr('name');
+
+          form.submit();
+        } else {
+          $("#stripe-error-message").text(response.error.message);
+          $("#credit-card-errors").show();
+          $("#validate_card_btn").attr("disabled", false);
+        }
+    });
+    return false;
+  });
+});
+  </script>
+ 
+{% endblock %}
+
+
+{% block content %}
+
+
+<table class="table">
+
+  <tr>
+    <td>Total Pay</td><td>{{total_price}}</td>
+    </td>
+  </tr>
+</table>
+
+<table class="table">
+  <tr>
+      <form role="form" method="post" id="payment-form" action="{% url 'cart_detail' %}">
+        
+    <legend>Payment Details</legend>
+
+    <div id="credit-card-errors" style="display:none">
+      <div class="alert-message block-message error" id="stripe-error-message"></div>
+    </div>
+
+    <div class="form-group col-md-6">
+        {{ order_form }}
+    </div>
+
+    <div class="form-group col-md-6">
+        {{ payment_form }}
+    </div>
+
+    {% csrf_token %}
+    <br>
+    <div class="form-group col-md-12">
+      <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+    </div>
+
+    </form>
+   
+
+</form>
+
+  
+
+
+  </tr>
+        
+    
+  </tr> 
+  </table>
+
+
+
+{% endblock %}

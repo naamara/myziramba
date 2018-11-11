@@ -22,6 +22,7 @@ from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.contrib.auth.decorators import login_required
 
 stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
 
@@ -125,6 +126,9 @@ class CartDetailView(TemplateView):
         return UserCheckout.objects.get(id=user_checkout_id)
 
     def post(self, request):
+        if not request.user.is_authenticated():
+            return redirect('/')
+            
         user_checkout, created  = UserCheckout.objects.get_or_create(user=request.user)
         request.session['user_checkout_id'] = user_checkout.id
     
@@ -133,13 +137,121 @@ class CartDetailView(TemplateView):
         request.session['cart_id'] 
         total_price=total_price.cart_price 
         request.session['total_price']  = total_price
-        
-        
+
+       
             
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
+        print payment_form
         
-        if order_form.is_valid() and payment_form.is_valid():
+        if  payment_form.is_valid():
+            order = order_form.save(commit=False)
+            order.date = timezone.now()
+            order.save()
+
+            cart = models.Cart.objects.get(id=request.session['cart_id'])
+            total_price = models.Cart.objects.get(id=request.session['cart_id'])
+            request.session['cart_id'] 
+            total_price=total_price.cart_price 
+            request.session['total_price']  = total_price
+            addr_form= UserAddressForm
+
+            try:
+                customer = stripe.Charge.create(
+                    amount= int(total * 100),
+                    currency="EUR",
+                    description=request.user.email,
+                    card=payment_form.cleaned_data['stripe_id'],
+                )
+            except stripe.error.CardError:
+                messages.error(request, "Your card was declined!")
+
+            if customer.paid:
+                messages.error(request, "You have successfully paid")
+                subjects = {
+                'pending_transaction': 'Pending Transaction',
+                'complete_transaction': 'Transaction Complete',
+                'user_verification': 'User Pending Verification',
+                'user_verification_update': 'User Updated Verification Details',
+                'new_user': '',
+                'rates_error': 'An error occurred while fetching the rates',
+                'server_error': 'Dude your App Just Broke',
+                'contact_us': 'New Contact Message',
+                }
+                msg = EmailMessage('Payement Success', "You have successfully paid", "mandelashaban593@gmail.com", to=[request.user.email,])
+                msg.send()
+                request.session['cart'] = {}
+                return redirect(reverse('products'))
+            else:
+                messages.error(request, "Unable to take payment")
+        else:
+            print(payment_form.errors)
+            messages.error(request, "We were unable to take a payment with that card!")
+            cart = models.Cart.objects.get(id=request.session['cart_id'])
+            total_price = models.Cart.objects.get(id=request.session['cart_id'])
+            request.session['cart_id'] 
+            total_price=total_price.cart_price 
+            request.session['total_price']  = total_price
+            addr_form= UserAddressForm
+            payment_form = MakePaymentForm()
+            order_form = OrderForm()
+            return render(request, self.template_name, {'object': cart,'order_form': order_form, 'publishable': settings.STRIPE_PUBLIC_KEY,'payment_form': payment_form,'total_price':total_price})
+        
+
+class CartDetailPayView(TemplateView):
+    addr_form= None
+    template_name = 'carts/checkout_pay.html'
+    
+
+    def get(self, request):
+        if 'cart_id' not in request.session:
+            return redirect('/')
+        cart = models.Cart.objects.get(id=request.session['cart_id'])
+        total_price = models.Cart.objects.get(id=request.session['cart_id'])
+        request.session['cart_id'] 
+        total_price=total_price.cart_price 
+        request.session['total_price']  = total_price
+        addr_form= UserAddressForm
+        payment_form = MakePaymentForm()
+        order_form = OrderForm()
+        return render(request, self.template_name, {'object': cart,'order_form': order_form, 'publishable': settings.STRIPE_PUBLIC_KEY,'payment_form': payment_form,'total_price':total_price})
+    
+    def get_success_url(self):
+        return reverse('cart_checkout')
+
+    def get_user_checkout(self):
+        user_checkout_id = self.request.session['user_checkout_id']
+        return UserCheckout.objects.get(id=user_checkout_id)
+
+    def post(self, request):
+        if not request.user.is_authenticated():
+            return redirect('/')
+            
+        user_checkout, created  = UserCheckout.objects.get_or_create(user=request.user)
+        request.session['user_checkout_id'] = user_checkout.id
+    
+        cart = models.Cart.objects.get(id=request.session['cart_id'])
+        total_price = models.Cart.objects.get(id=request.session['cart_id'])
+        request.session['cart_id'] 
+        total_price=total_price.cart_price 
+        request.session['total_price']  = total_price
+
+        tomer = stripe.Charge.create(
+                    amount= int(total_price * 100),
+                    currency="EUR",
+                    description=request.user.email,
+                    card=9087,
+                )
+
+        print "CUSTOMER %s", tomer
+            
+        order_form = OrderForm(request.POST)
+        payment_form = MakePaymentForm(request.POST)
+
+        print payment_form
+        print order_form
+        
+        if  payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
@@ -249,10 +361,20 @@ class CheckoutView(TemplateView, FormMixin):
 
 
 
-def payment_form(request):
+def payment(request):
 
-    context = { "stripe_key": settings.STRIPE_PUBLIC_KEY }
-    return render(request, "yourtemplate.html", context)
+    stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
+    token = request.GET.get['stripeToken'] # Using Flask
+
+    print token
+    charge = stripe.Charge.create(
+        amount=999,
+        currency='usd',
+        description='Example charge',
+        source=token,
+    )
+
+    return render(request, "checkout_pay.html", context)
 
 
 

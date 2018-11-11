@@ -2,12 +2,14 @@ from django.conf.urls import url,  include
 
 from . import views
 from orders.views import AddressFormView, UserAddressCreateView, ConfirmOrderView, OrdersList
+from carts.views import payment
 
 urlpatterns = [
     url(r'^$', views.CartCreateView.as_view(), name='create_cart'),
     url(r'^view/$', views.CartDetailView.as_view(), name='cart_detail'),
+    url(r'^viewpay/$', views.CartDetailPayView.as_view(), name='cart_detail_pay'),
     url(r'^charge/$', views.charge, name='charge'),
- 
+  	url(r'^pay_good/$', views.payment, name='pay_good'),
 
     url(r'^checkout/$', views.CheckoutView.as_view(), name='cart_checkout'),
     url(r'^address/$', AddressFormView.as_view(), name='address'),   
