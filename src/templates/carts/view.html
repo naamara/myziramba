@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block jquery %}
 
   function updateCart(item, qty, del){
@@ -41,19 +43,30 @@
 {% block content %}
 
 <table class="table">
+  <tr>
+    <td>Name</td>
+    <td>Quantity</td>
+    <td>Item Price</td>
+    <td>Item Total</td>
+    <td>Remove</td>
+  </tr>
 {% for cart_item in object.cartitem_set.all %}
   <tr>
-    <td>{{cart_item.item_name}}</td>
+<!--     <td><img src="{% static 'images/shopping_cart.jpg' %}"></td>
+ -->    <td>{{cart_item.item_name}}</td>
     <td><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></td>
     <td class="item-price">Rs {{cart_item.item_total}}</td>
-    <td class="text-right"><a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item">Remove</a></td>
+    <td class="item-price"> Rs {{object.cart_price}}</td>
+    <td class="item-price"><a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item">X</a></td>
   </tr>
 {% endfor %}
-  <tr>
-    <td colspan="4" id="cart-price" class="text-right"> Rs {{object.cart_price}}<br>
-    <a href="{% url 'cart_detail_pay' %}">Checkout</a>
-    </td>
+  <tr align="right" class="right-align">
+    <td class="button cart_button_checkout">Continue Shopping</td>
+    <td class="button cart_button_checkout"><a href="{% url 'cart_detail_pay' %}">Continue to payment</a></td>
   </tr>
 </table>
 
 {% endblock %}
+
+
+       
