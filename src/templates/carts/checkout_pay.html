@@ -134,8 +134,8 @@
  <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
-
+      <form method="post"  role="form" id="payment-form" action="{% url 'cart_detail' %}">
+      {% csrf_token %}
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
@@ -173,18 +173,18 @@
             <label for="cname">Name on Card</label>
             <input type="text" id="cname" name="cardname" placeholder="John More Doe">
             <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <input type="text" id="id_credit_card_number" name="cardnumber" placeholder="1111-2222-3333-4444">
             <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <input type="text" id="id_expiry_month" name="expmonth" placeholder="September">
 
             <div class="row">
               <div class="col-50">
                 <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                <input type="text" id="id_expiry_year" name="expyear" placeholder="2018">
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
+                <input type="text" id="id_cvv" name="cvv" placeholder="352">
               </div>
             </div>
           </div>
@@ -202,16 +202,21 @@
     <div class="container">
       <h4>Cart
         <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
+          <i class="fa fa-shopping-car"></i>
+          <b><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> <span id="cart-count-badge" class="badge">{{request.session.cart_count}}</span></a></b>
         </span>
       </h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      {% for cart_item in object.cartitem_set.all %}
+      <p><a href="#">{{cart_item.item_name}}</a> <span class="price">Ugx {{cart_item.item_total}}</span> </p>
+     
+      {% endfor %}
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b>{{total_price}}</b></span></p>
+
+
+
+   
+
     </div>
   </div>
 </div> 
