@@ -3756,3 +3756,85 @@ span.price {
     margin-bottom: 20px;
   }
 }
+/*Css for grid layout*/
+.grid {
+  /* Grid Fallback */
+  display: flex;
+  flex-wrap: wrap;
+  
+  /* Supports Grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  grid-auto-rows: minmax(100%, auto);
+  grid-gap: 1em;
+}
+
+.module {
+  /* Demo-Specific Styles */
+  background: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  
+  /* Flex Fallback */
+  margin-left: 4.5%;
+  margin-right: 4.5%;
+  flex: 1 1 200px;
+}
+
+.grid-header {
+  /* Demo-Specific Styles */
+  background: #464646;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  height: 15px;
+  border-radius: 2px solid black;
+  
+  /* Flex Fallback */
+  margin-left: 4.5%;
+  margin-right: 4.5%;
+  flex: 1 1 200px;
+}
+
+/* If Grid is supported, remove the margin we set for the fallback */
+@supports (display: grid) {
+  .module {
+    magin: 0;
+  }
+
+	.grid-header{
+		mrgin: 0;	
+	}
+}
+/* Products Css*/
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  padding: 2%;
+  flex-grow: 1;
+  flex-basis: 20%;
+
+  display: flex; /* so child elements can use flexbox stuff too! */
+  flex: 1 20%;
+}
+.product-image img {
+  max-width: 100%;
+}
+.product-info {
+  margin-top: auto;
+}
+
+@media (max-width: 920px) {
+  .product-card {
+    flex: 1 21%;
+  }
+  .products .product-card:first-child, 
+	.products .product-card:nth-child(2) {
+		flex: 2 46%;
+	}
+}

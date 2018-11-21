@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  {% block wrapper %}
+  <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+   // Slideshow 4
+      $("#slider1").responsiveSlides({
+        ato: false,
+        pager: false,
+        nav: true,
+        speed: 500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
+
+    });
+  </script>
+
+
+          
+  <div id="wrapper">
+      <!-- Slideshow 1 -->
+    <div class="callbacks_container">
+      <ul class="rslides" id="slider1">
+        <li>
+          <img src="{% static 'images/1.jpg' %}" alt="">
+          <p class="caption">This is a caption</p>
+        </li>
+        <li>
+          <img src="{% static 'images/2.jpg' %}" alt="">
+          <p class="caption">This is another caption</p>
+        </li>
+        <li>
+          <img src="{%  static 'images/3.jpg' %}" alt="">
+          <p class="caption">The third caption</p>
+        </li>
+      </ul>
+    </div>
+  
+  </div>
+{% endblock %}
