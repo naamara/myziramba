@@ -46,3 +46,329 @@
 		{% endif %}
 
 	{% endblock %}
+
+	{% block animation %}
+		<!-- Banner -->
+
+  <div class="banner">
+
+  {% include 'animation.html' %}
+  </div> 
+  
+	{% endblock %}
+
+
+	{% block grid %}
+
+
+<!--  Grid Layout -->
+
+
+<div class="grid">
+  <div class ="grid-header">Home Decor
+  </div>
+  <div class="module">
+    <section class="products">
+
+    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+
+    <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+    <!-- more products -->
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+    </section>
+  </div>
+  <div class ="grid-header">Construction Materials
+  </div>
+  <div class="module"><section class="products">
+
+    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+
+    <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+    <!-- more products -->
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+     <div class="product-card">
+      <div class="product-image">
+        <img src="{% static 'images/best_1.png' %}">
+      </div>
+      <div class="product-info">
+        <h5>Winter Jacket</h5>
+        <h6>$99.99</h6>
+      </div>
+    </div>
+
+    </section></div>
+    <div class ="grid-header">Electronics
+  </div>
+  <div class="module">Products here</div>
+  <div class ="grid-header">Smartphones
+  </div>
+  <div class="module">Products here</div>
+
+</div>
+<!-- gridlayout -->
+	{% endblock %}
+
+	{% block trends %}
+	<!-- Trends -->
+
+	<div class="trends">
+		<div class="trends_background" style="background-image:url({% static 'images/trends_background.jpg' %})"></div>
+		<div class="trends_overlay"></div>
+		<div class="container">
+			<div class="row">
+
+				<!-- Trends Content -->
+				<div class="col-lg-3">
+					<div class="trends_container">
+						<h2 class="trends_title">Trends 2018</h2>
+						<div class="trends_text"><p>Shop the trending products for 2018 selected by Ziramba Team.</p></div>
+						<div class="trends_slider_nav">
+							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
+							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Trends Slider -->
+				<div class="col-lg-9">
+					<div class="trends_slider_container">
+
+						<!-- Trends Slider -->
+
+						<div class="owl-carousel owl-theme trends_slider">
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item is_new">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/trends_1.jpg' %}" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">Jump White</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/trends_2.jpg' %}" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">Samsung Charm...</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item is_new">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/trends_3.jpg' %}" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">DJI Phantom 3...</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item is_new">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="images/trends_1.jpg" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">Jump White</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/trends_2.jpg' %}" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">Jump White</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+							<!-- Trends Slider Item -->
+							<div class="owl-item">
+								<div class="trends_item is_new">
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="images/trends_3.jpg" alt=""></div>
+									<div class="trends_content">
+										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_info clearfix">
+											<div class="trends_name"><a href="product.html">Jump White</a></div>
+											<div class="trends_price">$379</div>
+										</div>
+									</div>
+									<ul class="trends_marks">
+										<li class="trends_mark trends_discount">-25%</li>
+										<li class="trends_mark trends_new">new</li>
+									</ul>
+									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+
+	{% block newsletter %}
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+						<div class="newsletter_title_container">
+							<div class="newsletter_icon"><img src="{% static 'images/send.png' %}" alt=""></div>
+							<div class="newsletter_title">Sign up for Ziramba Newsletter</div>
+							<div class="newsletter_text"><p>...and receive 20% coupon for first shopping.</p></div>
+						</div>
+						<div class="newsletter_content clearfix">
+							<form action="#" class="newsletter_form">
+								<input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
+								<button class="newsletter_button">Subscribe</button>
+							</form>
+							<div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
