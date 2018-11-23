@@ -9,6 +9,9 @@
 <meta name="description" content="Ziramba shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+
 <title>{% block head_title %}Ziramba Store {% endblock %}</title>
 {% include 'head_css.html' %}
 
@@ -37,7 +40,7 @@
           <!-- Logo -->
           <div class="col-lg-2 col-sm-3 col-3 order-1">
             <div class="logo_container">
-              <div class="logo"><a href="#">Ziramba</a></div>
+              <div class="logo"><a href="/">Ziramba</a></div>
             </div>
           </div>
 
@@ -140,11 +143,11 @@
 
               <div class="main_nav_menu ml-auto">
                 <ul class="standard_dropdown main_nav_dropdown">
-                  <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
                   <li><a a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/about">Cart<i class="fas fa-chevron-down"></i></a></li>
                   <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
                 </ul>
               </div>
 
@@ -253,28 +256,9 @@
 
   </header>
   
-  <!-- Banner -->
+  {% block animation %}
 
-  <div class="banner">
-    <div class="banner_background" style="background-image:url({% static 'images/banner_background.jpg' %})"></div>
-    <div class="container fill_height">
-      <div class="row fill_height">
-        <div class="banner_product_image"><img src="{% static 'images/banner_product.png' %}" alt=""></div>
-        <div class="col-lg-5 offset-lg-4 fill_height">
-          <div class="banner_content">
-            
-            <div class="banner_price"><span>$530</span>$460</div>
-            <div class="banner_product_name">Apple Iphone 6s</div>
-            <div class="button banner_button"> 
-
-            
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% endblock %}
 
   <!-- Characteristics -->
 
@@ -296,140 +280,18 @@
     </div>
   </div>
 
- 
-  <!--  Grid Layout -->
+{% block grid %}
+{% endblock %}
+  
+{% block trends %}
+{% endblock %}
 
 
-<div class="grid">
-  <div class ="grid-header">Home Decor
-  </div>
-  <div class="module">
-    <section class="products">
+{% block newsletter %}
+{% endblock %}
 
-    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-    <!-- more products -->
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-    </section>
-  </div>
-  <div class ="grid-header">Construction Materials
-  </div>
-  <div class="module"><section class="products">
-
-    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
-    <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-    <!-- more products -->
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-     <div class="product-card">
-      <div class="product-image">
-        <img src="{% static 'images/best_1.png' %}">
-      </div>
-      <div class="product-info">
-        <h5>Winter Jacket</h5>
-        <h6>$99.99</h6>
-      </div>
-    </div>
-
-    </section></div>
-    <div class ="grid-header">Electronics
-  </div>
-  <div class="module">Products here</div>
-  <div class ="grid-header">Smartphones
-  </div>
-  <div class="module">Products here</div>
-
-</div>
-<!-- gridlayout -->
-
-
+<!-- footer -->
+{% include 'footer.html' %}
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>

@@ -1,18 +1,16 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+
 {% load staticfiles %}
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  {% block wrapper %}
+  
   <script>
+
     // You can also use "$(window).load(function() {"
     $(function () {
 
    // Slideshow 4
-      $("#slider1").responsiveSlides({
-        ato: false,
+      $("#slider4").responsiveSlides({
+        auto: true,
         pager: false,
         nav: true,
         speed: 500,
@@ -28,26 +26,26 @@
     });
   </script>
 
-
           
   <div id="wrapper">
-      <!-- Slideshow 1 -->
+
+    <!-- Slideshow 4 -->
     <div class="callbacks_container">
-      <ul class="rslides" id="slider1">
-        <li>
+      <ul class="rslides callbacks callbacks1" id="slider4">
+        <li id="callbacks1_s0" class = "callbacks1_on" style="float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out 0s;">
           <img src="{% static 'images/1.jpg' %}" alt="">
-          <p class="caption">This is a caption</p>
+          <p class="caption">Get Iron Bars at 10% discout TODAY!!</p>
         </li>
-        <li>
+        <li id="callbacks1_s1" class = "callbacks1_on" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out 0s;">
           <img src="{% static 'images/2.jpg' %}" alt="">
           <p class="caption">This is another caption</p>
         </li>
-        <li>
+        <li id="callbacks1_s2" class = "callbacks1_on" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out 0s;">
           <img src="{%  static 'images/3.jpg' %}" alt="">
           <p class="caption">The third caption</p>
         </li>
       </ul>
+     
     </div>
   
   </div>
-{% endblock %}
