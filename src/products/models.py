@@ -14,6 +14,26 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
+    MY_CHOICES = (
+        ('m', 'Construction Materials'),
+        ('h', 'Home Decor'),
+        ('e', 'Electronic Appliances'),
+        ('a', 'Art and Decorations'),
+        ('f', 'Furniture'),
+        ('s', 'Bed Materials'),
+        ('k', 'Kitchen Tools'),
+        ('b', 'Bookcase'),
+        ('d', 'Drawer'),
+        ('c', 'Cabinetry'),
+        ('d', 'Dressers'),
+        ('o', 'Microwave Oven'),
+        ('r', 'Refrigerators'),
+        ('v', 'Vaccum Cleaner'),
+        ('g', 'Gas Fireplace'),
+        ('p', 'Smart Phones'),
+       
+    )
+    section = models.CharField(max_length=1, choices=MY_CHOICES, null=True)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True, null=True)
     price = models.PositiveIntegerField()

@@ -51,9 +51,42 @@ def dashboard(request):
 def home(request):
     featured_image = ProductFeatured.objects.first()
     products = Product.objects.all().order_by('?')
+    const_products = Product.objects.filter(section='m')
+    home_products = Product.objects.filter(section='h')
+    elect_products = Product.objects.filter(section='e')
+    art_products = Product.objects.filter(section='a')
+    furn_products = Product.objects.filter(section='f')
+    bed_products = Product.objects.filter(section='s')
+    kitch_products = Product.objects.filter(section='k')
+    book_products = Product.objects.filter(section='b')
+    drawer_products = Product.objects.filter(section='d')
+    cabin_products = Product.objects.filter(section='c')
+    dress_products = Product.objects.filter(section='Dressers')
+    Oven_products = Product.objects.filter(section='o')
+    ref_products = Product.objects.filter(section='r')
+    vac_products = Product.objects.filter(section='v')
+    gas_products = Product.objects.filter(section='g')
+    smart_products = Product.objects.filter(section='p')
+
     context = {
         "featured_image": featured_image,
-        "products": products
+        "products": products,
+        "const_products": const_products,
+        "home_products": home_products,
+        "elect_products": elect_products,
+        "art_products": art_products,
+        "furn_products": furn_products,
+        "bed_products": bed_products,
+        "book_products": book_products,
+        "kitch_products": kitch_products,
+        "drawer_products": drawer_products,
+        "cabin_products": cabin_products,
+        "dress_products": dress_products,
+        "Oven_products": Oven_products,
+        "ref_products": ref_products,
+        "vac_products": vac_products,
+        "gas_products": gas_products,
+        "smart_products":smart_products
     }
 
     if request.GET:

@@ -7,6 +7,11 @@ from carts.views import payment
 urlpatterns = [
     url(r'^$', views.CartCreateView.as_view(), name='create_cart'),
     url(r'^view/$', views.CartDetailView.as_view(), name='cart_detail'),
+    url(r'^homeDeco_detail/$', views.homeDeco_detail, name='homeDeco_detail'),
+    url(r'^const_detail/$', views.const_detail, name='const_detail'),
+    url(r'^elect_detail/$', views.elect_detail, name='elect_detail'),
+    url(r'^art_detail/$', views.art_detail, name='art_detail'),
+
     url(r'^viewpay/$', views.CartDetailPayView.as_view(), name='cart_detail_pay'),
     url(r'^charge/$', views.charge, name='charge'),
   	url(r'^pay_good/$', views.payment, name='pay_good'),
@@ -18,3 +23,4 @@ urlpatterns = [
     url(r'^orders/$', OrdersList.as_view(), name='order_list'),
     #url(r'^accounts/', include('registration.backends.default.urls')),
 ]
+

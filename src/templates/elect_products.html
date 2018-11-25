@@ -43,54 +43,7 @@
 		{% if products %}
 			<h3> Products  </h3>
 			<div class="grid">
-  <div class ="grid-header">Home Decor
-  </div>
-  <div class="module">
-    <section class="products">
-
-    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-{% for product in home_products %}
-    <div class="product-card">
-      <div class="product-image">
-      {% if product.get_image_url %}
-       <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
-       {% endif %}
-      </div>
-      <div class="product-info">
-        <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
-      </div>
-    </div>
-
-{% endfor %}
-
-   
-    </section>
-  </div>
-  <div class ="grid-header">Construction Materials
-  </div>
-  <div class="module"><section class="products">
-
-    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
-    {% for product in const_products %}
-    <div class="product-card">
-      <div class="product-image">
-      {% if product.get_image_url %}
-       <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
-       {% endif %}
-      </div>
-      <div class="product-info">
-        <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
-      </div>
-    </div>
-
-{% endfor %}
-
-
-    </section></div>
-
+ 
     <div class ="grid-header">Electronics
   </div>
   <div class="module"><section class="products">
@@ -116,30 +69,7 @@
     </section>
 </div>
 
-  <div class="module">Products here</div>
-  <div class ="grid-header">Smartphones
-  </div>
-   <div class="module"><section class="products">
-
-    <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
-    {% for product in smart_products %}
-    <div class="product-card">
-      <div class="product-image">
-      {% if product.get_image_url %}
-       <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
-       {% endif %}
-      </div>
-      <div class="product-info">
-        <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
-      </div>
-    </div>
-
-{% endfor %}
-
-
-    </section>
+ 
 </div>
 
 

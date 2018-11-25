@@ -282,3 +282,6 @@ ADS_ZONES = {
         'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
     },
 }
+
+
+#ADMIN CREDENTIALS: username:peter300, pwd:musa3000

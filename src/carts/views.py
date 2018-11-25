@@ -23,8 +23,75 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
-
+from products.models import ProductFeatured, Product
 stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
+
+
+
+
+def homeDeco_detail(request):
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+ 
+    home_products = Product.objects.filter(section='h')
+
+    context = {
+        "featured_image": featured_image,
+        "home_products": home_products,
+    }
+
+    if request.GET:
+        print  request.GET
+
+    return render(request, "home_decor.html", context)
+
+
+def elect_detail(request):
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+    elect_products = Product.objects.filter(section='e')
+
+    context = {
+        "featured_image": featured_image,
+        "elect_products": elect_products,
+    }
+
+    if request.GET:
+        print  request.GET
+
+    return render(request, "home_decor.html", context)
+
+def art_detail(request):
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+    art_products = Product.objects.filter(section='a')
+
+    context = {
+        "featured_image": featured_image,
+        "art_products": art_products,
+    }
+
+    if request.GET:
+        print  request.GET
+
+    return render(request, "art_products.html", context)
+
+
+def const_detail(request):
+    featured_image = ProductFeatured.objects.first()
+    products = Product.objects.all().order_by('?')
+    const_products = Product.objects.filter(section='m')
+
+    context = {
+        "featured_image": featured_image,
+        "const_products": const_products,
+    }
+
+    if request.GET:
+        print  request.GET
+
+    return render(request, "const_products.html", context)
+
 
 class CartCreateView(TemplateView, APIView):
     """ add item to cart request handler """

@@ -57,10 +57,10 @@
                         <i class="fas fa-chevron-down"></i>
                         <ul class="custom_list clc">
                           <li><a class="clc" href="#">All Categories</a></li>
-                          <li><a class="clc" href="#">Construction Materials</a></li>
-                          <li><a class="clc" href="#">Home Decor</a></li>
-                          <li><a class="clc" href="#">Electronic Appliances</a></li>
-                          <li><a class="clc" href="#">Art and Decorations</a></li>
+                          <li><a class="clc" href="{% url 'const_detail' %}">Construction Materials</a></li>
+                          <li><a class="clc" href="{% url 'homeDeco_detail' %}">Home Decor</a></li>
+                          <li><a class="clc" href="{% url 'elect_detail' %}">Electronic Appliances</a></li>
+                          <li><a class="clc" href="{% url 'art_detail' %}">Art and Decorations</a></li>
                         </ul>
                       </div>
                     </div>
@@ -144,9 +144,7 @@
               <div class="main_nav_menu ml-auto">
                 <ul class="standard_dropdown main_nav_dropdown">
                   <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a href="/about">Cart<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
+                  
                   <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
                 </ul>
               </div>
