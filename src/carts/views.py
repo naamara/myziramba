@@ -29,21 +29,24 @@ stripe.api_key = "sk_test_h6dnQ43clBgHoTYAInAU6sMk"
 
 
 
-def homeDeco_detail(request):
-    featured_image = ProductFeatured.objects.first()
-    products = Product.objects.all().order_by('?')
- 
-    home_products = Product.objects.filter(section='h')
+class HomeDecoDetailView(TemplateView):
+    addr_form= None
+    template_name = 'home_decor.html'
+    
 
-    context = {
-        "featured_image": featured_image,
-        "home_products": home_products,
-    }
+    def get(self, request):
+        featured_image = ProductFeatured.objects.first()
+        products = Product.objects.all().order_by('?')
+     
+        home_products = Product.objects.filter(section='h')
 
-    if request.GET:
-        print  request.GET
-
-    return render(request, "home_decor.html", context)
+        context = {
+            "featured_image": featured_image,
+            "home_products": home_products,
+        }
+        return render(request, self.template_name, context)
+    
+    
 
 
 def elect_detail(request):

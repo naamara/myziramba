@@ -53,12 +53,12 @@
                     <input type="search" required="required" name="q" class="header_search_input" placeholder="Search for products...">
                     <div class="custom_dropdown">
                       <div class="custom_dropdown_list">
-                        <span class="custom_dropdown_placeholder clc">All Categories</span>
+                        <span class="custom_dropdown_placeholder clc"><li><a class="clc" href="#">All Categories</a></li></span>
                         <i class="fas fa-chevron-down"></i>
                         <ul class="custom_list clc">
-                          <li><a class="clc" href="#">All Categories</a></li>
+                         
                           <li><a class="clc" href="{% url 'const_detail' %}">Construction Materials</a></li>
-                          <li><a class="clc" href="{% url 'homeDeco_detail' %}">Home Decor</a></li>
+                          <li><a class="clc" href="{% url 'deco_detail' %}">Home Decor</a></li>
                           <li><a class="clc" href="{% url 'elect_detail' %}">Electronic Appliances</a></li>
                           <li><a class="clc" href="{% url 'art_detail' %}">Art and Decorations</a></li>
                         </ul>
@@ -144,7 +144,8 @@
               <div class="main_nav_menu ml-auto">
                 <ul class="standard_dropdown main_nav_dropdown">
                   <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
-                  
+                  <li><a href="{% url 'deco_detail' %}">Home Decor<i class="fas fa-chevron-down"></i></a></li>
+                   <li><a href="{% url 'elect_detail' %}">Electronic Appliances<i class="fas fa-chevron-down"></i></a></li>
                   <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
                 </ul>
               </div>
