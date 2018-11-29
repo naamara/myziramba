@@ -9,7 +9,6 @@
 <meta name="description" content="Ziramba shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
 
 <title>{% block head_title %}Ziramba Store {% endblock %}</title>
@@ -103,7 +102,7 @@
                 <ul class="cat_menu">
                   <li><a href="#">Construction Materials <i class="fas fa-chevron-right ml-auto"></i></a></li>
                   <li class="hassubs">
-                    <a href="#">Home Decor <i class="fas fa-chevron-right"></i></a>
+                    <a href="{% url 'deco_detail' %}">Home Decor <i class="fas fa-chevron-right"></i></a>
                     <ul>
                       <li class="hassubs">
                         <a href="#">Furniture<i class="fas fa-chevron-right"></i></a>
@@ -119,7 +118,7 @@
                     </ul>
                   </li>
                   <li class="hassubs">
-                    <a href="#">Electronic Appliances <i class="fas fa-chevron-right"></i></a>
+                    <a href="{% url 'elect_detail' %}">Electronic Appliances <i class="fas fa-chevron-right"></i></a>
                     <ul>
                       <li class="hassubs">
                         <a href="#">Microwave oven<i class="fas fa-chevron-right"></i></a>
@@ -144,8 +143,8 @@
               <div class="main_nav_menu ml-auto">
                 <ul class="standard_dropdown main_nav_dropdown">
                   <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
-                  <li><a href="{% url 'deco_detail' %}">Home Decor<i class="fas fa-chevron-down"></i></a></li>
-                   <li><a href="{% url 'elect_detail' %}">Electronic Appliances<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/about">About Us<i class="fas fa-chevron-down"></i></a></li>
+                   <li><a href="/blog">Blog<i class="fas fa-chevron-down"></i></a></li>
                   <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
                 </ul>
               </div>

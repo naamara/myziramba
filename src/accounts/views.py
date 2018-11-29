@@ -28,7 +28,13 @@ def logout_view(request):
 
 def about(request):
     return render(request, "about.html", {})
-    
+
+def blog(request):
+    return render(request, "blog.html", {})
+
+def singleblog(request):
+    return render(request, "blog_single.html", {}) 
+
 # Create your views here.
 def home(request):
     featured_image = ProductFeatured.objects.first()

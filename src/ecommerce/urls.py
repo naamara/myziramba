@@ -14,6 +14,8 @@ urlpatterns = [
 
     url(r'^useraddress/$',views.Useraddress, name='useraddress'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^blog/$', views.blog, name='blog'),
+    url(r'^singleblog/$', views.singleblog, name='singleblog'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', admin.site.urls),
