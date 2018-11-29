@@ -26,16 +26,8 @@
 			<div class="jumbotron">
 				<div class="container">
 					<div class="row">
-						<div class='col-sm-6'>
-							<h1>{{featured_image.product.title}}</h1>
-							<p>{{featured_image.product.description}}</p>
-							<p>
-								<a class="btn btn-lg btn-primary" href="{{featured_image.product.get_absolute_url}}" role="button">More Details</a>
-							</p>
-						</div>
-						<div class='col-sm-6' >
-							<img src="{{featured_image.image.url}}" class="img-responsive">
-						</div>
+						
+						
 					</div>
 				</divp>
 			</div>
@@ -55,6 +47,7 @@
     <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
 {% for product in home_products %}
     <div class="product-card">
+    	<div class="product_border"></div>
       <div class="product-image">
       {% if product.get_image_url %}
        <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
@@ -62,7 +55,7 @@
       </div>
       <div class="product-info">
         <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
+        <h6>Ugx {{product.variation_set.first.price}}</h6>
       </div>
     </div>
 
@@ -79,6 +72,7 @@
 
     {% for product in const_products %}
     <div class="product-card">
+    	<div class="product_border"></div>
       <div class="product-image">
       {% if product.get_image_url %}
        <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
@@ -86,7 +80,7 @@
       </div>
       <div class="product-info">
         <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
+        <h6>Ugx {{product.variation_set.first.price}}</h6>
       </div>
     </div>
 
@@ -103,6 +97,7 @@
 
     {% for product in elect_products %}
     <div class="product-card">
+    	<div class="product_border"></div>
       <div class="product-image">
       {% if product.get_image_url %}
        <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
@@ -110,7 +105,7 @@
       </div>
       <div class="product-info">
         <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
+        <h6>Ugx {{product.variation_set.first.price}}</h6>
       </div>
     </div>
 
@@ -129,6 +124,7 @@
 
     {% for product in smart_products %}
     <div class="product-card">
+    	<div class="product_border"></div>
       <div class="product-image">
       {% if product.get_image_url %}
        <a href="{{product.get_absolute_url}}"> <img src="{{product.get_image_url}}" alt="..." ></a>
@@ -136,7 +132,7 @@
       </div>
       <div class="product-info">
         <h5><a href="{{product.get_absolute_url}}">{{product.title}}</a></h5>
-        <h6>Ugx{{product.variation_set.first.price}}</h6>
+        <h6>Ugx {{product.variation_set.first.price}}</h6>
       </div>
     </div>
 
