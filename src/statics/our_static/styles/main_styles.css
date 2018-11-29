@@ -1285,8 +1285,11 @@ select option
 
 .characteristics
 {
-	padding-top: 70px;
+	pdding-top: 70px;
 	padding-bottom: 70px;
+	tp: -145px;
+	max-width: 80%;
+	left: 10%;
 }
 .char_item
 {

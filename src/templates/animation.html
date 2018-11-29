@@ -1,51 +1,21 @@
 
 {% load staticfiles %}
 
-
-  
-  <script>
-
-    // You can also use "$(window).load(function() {"
-    $(function () {
-
-   // Slideshow 4
-      $("#slider4").responsiveSlides({
-        auto: true,
-        pager: false,
-        nav: true,
-        speed: 500,
-        namespace: "callbacks",
-        before: function () {
-          $('.events').append("<li>before event fired.</li>");
-        },
-        after: function () {
-          $('.events').append("<li>after event fired.</li>");
-        }
-      });
-
-    });
-  </script>
-
-          
-  <div id="wrapper">
-
-    <!-- Slideshow 4 -->
-    <div class="callbacks_container">
-      <ul class="rslides callbacks callbacks1" id="slider4">
-        <li id="callbacks1_s0" class = "callbacks1_on" style="float: left; position: relative; opacity: 1; z-idex: 2; transition: opacity 500ms ease-in-out 0s;">
-          <img src="{% static 'images/1.jpg' %}" alt="">
-          <p class="caption">Get Iron Bars at 10% discout TODAY!!</p>
-        </li>
-        <li id="callbacks1_s1" class = "callbacks1_on" style="float: none; position: absolute; opacity: 0; z-inex: 1; display: list-item; transition: opacity 500ms ease-in-out 0s;">
-          <img src="{% static 'images/2.jpg' %}" alt="">
-          <p class="caption">This is another caption</p>
-        </li>
-        <li id="callbacks1_s2" class = "callbacks1_on" style="float: none; position: absolute; opacity: 0; z-inex: 1; display: list-item; transition: opacity 500ms ease-in-out 0s;">
-          <img src="{%  static 'images/3.jpg' %}" alt="">
-          <p class="caption">The third caption</p>
-        </li>
-      </ul>
-     
-    </div>
-  
+{% block animation %}
+ <!-- Start WOWSlider.com BODY section -->
+  <div id="wowslider-container">
+  <div class="ws_images"><ul>
+  <li><a href="/"><img src="{% static 'images/slide1new.jpg' %}" alt="Need to put clear pictures to this slideshow" title="" id="wows_0"/></a></li>
+  <li><a href="/"><img src="{% static 'images/slide2new.jpg' %}" alt="Need to put clear pictures to this slideshow" title="You can add description to slides!" id="wows_1"/></a></li>
+  <li><a href="/"><img src="{% static 'images/slide3new.jpg' %}" alt="Need to put clear pictures to this slideshow" title="" id="wows_2"/></a></li>
+  </ul></div>
+  <div class="ws_bullets"><div>
+  <a href="#" title=""><img src="{% static 'images/slide11new.jpg' %}" alt="Need to put clear pictures to this slideshow"/>1</a>
+  <a href="#" title="You can add description to slides!"><img src="{% static 'images/slide22new.jpg' %}" alt="Need to put clear pictures to this slideshow"/>2</a>
+  <a href="#" title=""><img src="{% static 'images/slide33new.jpg' %}" alt="Need to put clear pictures to this slideshow"/>3</a>
+  </div></div>
+    <a href="#" class="ws_frame"></a>
+    <div class="ws_shadow"></div>
   </div>
+ {% endblock %}
+  <!-- End WOWSlider.com BODY section -->
