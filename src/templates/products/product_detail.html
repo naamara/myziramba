@@ -61,6 +61,7 @@ $('#add-to-cart').click(function(event){
 	</div>
 </div>
 <div class="row">
+	
 	<div class="col-sm-8"> 
 		<h3>{{product.title}}</h3>
 		{% if product.get_image_url %}
@@ -87,7 +88,11 @@ $('#add-to-cart').click(function(event){
 			{% endfor %}
 			</select>
 		{% else %}
-			<h3 id="price">{{product.variation_set.first.price}}</h3>
+
+ 			<input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="1">
+ 		</br>
+									
+			<h3 id="price">Ugx {{product.variation_set.first.price}}</h3>
 			<input type="hidden" name="item" value="{{product.variation_set.first.id}}" />
 		{% endif %}
 		<br>
@@ -108,4 +113,6 @@ $('#add-to-cart').click(function(event){
 		{% endif %}
 	</div>
 </div>
+
+
 {% endblock %}
