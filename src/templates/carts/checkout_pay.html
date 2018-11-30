@@ -89,7 +89,7 @@
         }
     });
     return false;
-  });
+  
 });
   </script>
  
@@ -183,7 +183,7 @@
                 <input type="text" id="id_expiry_year" name="expyear" placeholder="2018">
               </div>
               <div class="col-50">
-                <label for="cvv">CVV</label>
+                <label for="cvv">CSV</label>
                 <input type="text" id="id_cvv" name="cvv" placeholder="352">
               </div>
             </div>
@@ -202,7 +202,6 @@
     <div class="container">
       <h4>Cart
         <span class="price" style="color:black">
-          <i class="fa fa-shopping-car"></i>
           <b><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> <span id="cart-count-badge" class="badge">{{request.session.cart_count}}</span></a></b>
         </span>
       </h4>

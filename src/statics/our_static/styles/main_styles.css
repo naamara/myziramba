@@ -3398,6 +3398,7 @@ select option
 	padding-top: 60px;
 	padding-bottom: 60px;
 	box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+	height: auto;
 }
 .newsletter_container
 {
@@ -3533,6 +3534,7 @@ select option
 {
 	padding-top: 52px;
 	padding-bottom: 40px;
+	height: auto;
 }
 .footer .logo_container
 {
