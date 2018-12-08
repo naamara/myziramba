@@ -1261,6 +1261,7 @@ select option
 	background: #FFFFFF;
 	padding-top: 80px;
 	padding-bottom: 139px;
+	width: 100%;
 }
 .shop_content
 {
@@ -1397,9 +1398,8 @@ select option
 	width: 20%;
 	background: #FFFFFF;
 	cursor: pointer;
-	padding-top: 40px;
-	padding-bottom: 24px;
 	text-align: center;
+	padding: 2%;
 }
 .product_border
 {

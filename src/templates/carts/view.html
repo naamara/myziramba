@@ -41,30 +41,81 @@
 
 
 {% block content %}
+   
+            
+              <div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
+           
+<legend>Shopping Cart</legend>
 
-<table class="table">
-  <tr>
-    <td>Name</td>
-    <td>Quantity</td>
-    <td>Item Price</td>
-    <td>Item Total</td>
-    <td>Remove</td>
-  </tr>
 {% for cart_item in object.cartitem_set.all %}
-  <tr>
-<!--     <td><img src="{% static 'images/shopping_cart.jpg' %}"></td>
- --><td>{{cart_item.item_name}}</td>
-    <td><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></td>
-    <td class="item-price">Ugx {{cart_item.item_total}}</td>
-    <td class="item-price"> Ugx {{object.cart_price}}</td>
-    <td class="item-price"><a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item"><i class="fa fa-trash" style="font-size: 20px; color: red; text-align: center;"></i></a></td>
-  </tr>
+ <div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form method="post"  role="form" id="payment-form" action="{% url 'cart_detail' %}">
+      {% csrf_token %}
+        <div class="row">
+          <div class="col-50">
+             <label for="Item Image">Item Image</label>
+            {% if cart_item.get_image_url %}
+              <div>
+                <img src="{{cart_item.get_image_url}}" class="img-responsive">
+              </div>
+            {% endif %}
+            <label for="Item Name">Item Name</label>
+            <h3>{{cart_item.item_name}}</h3>
+            <label for="email"> Item Price</label>
+            <h3>Ugx {{cart_item.item_total}}</h3>
+       
+          </div>
+
+          <div class="col-50">
+            <label for="email"> Quantity</label>
+            <h3><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></h3>
+            <label for="email"> Item Total</label>
+            <h3>Ugx {{object.cart_price}}</h3>
+            <label for="cname">Remove Item</label>
+             <a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item"><i class="fa fa-trash" style="font-size: 20px; color: red; text-align: center;"></i></a>
+           
+           
+
+           
+          </div>
+
+        </div>
+     
+          <table>
+            <tr align="right" class="right-align">
+              <td class="button cart_button_checkout"><a href="/products">Continue Shopping</a></td>
+              <td class="button cart_button_checkout"><a href="{% url 'cart_detail_pay' %}">Continue to payment</a></td>
+            </tr>
+          </table>
+      </form>
+    </div>
+  </div>
 {% endfor %}
-  <tr align="right" class="right-align">
-    <td class="button cart_button_checkout"><a href="/">Continue Shopping</a></td>
-    <td class="button cart_button_checkout"><a href="{% url 'cart_detail_pay' %}">Continue to payment</a></td>
-  </tr>
-</table>
+
+  <div class="col-25">
+    <div class="container">
+      <h4><b>Order Summary</b>
+        <span class="price" style="color:black">
+        </span></h4>
+        <span class="" style="color:black"> <b>Estimated Total Ugx {{total_price}}</b></span>   
+        
+      <input type="submit" value="Secure checkout" class="btn">
+      {% for cart_item in object.cartitem_set.all %}
+      <p><a href="#">{{cart_item.item_name}}</a> <span class="price">Ugx {{cart_item.item_total}}</span> </p>
+     
+      {% endfor %}
+      <hr>
+      <p><b>Estimated Total <span class="price" style="color:black">Ugx{{total_price}}</b></span></p>
+
+
+
+   
+
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 
