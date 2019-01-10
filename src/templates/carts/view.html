@@ -72,17 +72,14 @@
             <label for="email"> Quantity</label>
             <h3><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></h3>
             <label for="email"> Item Total</label>
-            <h3>Ugx {{object.cart_price}}</h3>
+            <h3>Ugx {% widthratio cart_item.quantity 1 cart_item.item_total %}</h3>
             <label for="cname">Remove Item</label>
              <a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item"><i class="fa fa-trash" style="font-size: 20px; color: red; text-align: center;"></i></a>
-           
-           
-
-           
+         
           </div>
 
         </div>
-     
+     {% endfor %}
           <table>
             <tr align="right" class="right-align">
               <td class="button cart_button_checkout"><a href="/products">Continue Shopping</a></td>
@@ -92,7 +89,7 @@
       </form>
     </div>
   </div>
-{% endfor %}
+
 
   <div class="col-25">
     <div class="container">
@@ -101,7 +98,8 @@
         </span></h4>
         <span class="" style="color:black"> <b>Estimated Total Ugx {{total_price}}</b></span>   
         
-      <input type="submit" value="Secure checkout" class="btn">
+      <a href="{% url 'cart_detail_pay' %}">
+        <input type="submit" value="Secure checkout" class="btn"></a>
       {% for cart_item in object.cartitem_set.all %}
       <p><a href="#">{{cart_item.item_name}}</a> <span class="price">Ugx {{cart_item.item_total}}</span> </p>
      

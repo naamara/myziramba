@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-  {% block jquery%}
+{% load static %}
+
+{% block jquery %}
 
   function setPrice(){
 	var price = $('.variation-select option:selected').data('price');
@@ -55,6 +57,7 @@ $('#add-to-cart').click(function(event){
 	}
 </style>
 
+<div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
 
 <div class="container flash-msg">
 	<div class="col-sm-3 col-sm-offset-8">
