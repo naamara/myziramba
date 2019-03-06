@@ -6,22 +6,23 @@
 
 
 
+<div>
+  <div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
+
+	<div class='row'>
+		<div class='col-sm-6 col-sm-offset-3'>
 
 
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
+			{% if title %}
+				<h1 class='{% if title_align_center %}text-align-center{% endif %}'>{{ title }}</h1>
+				{% endif %}
 
+				<form method='POST' action=''>{% csrf_token %}
+					{{ form|crispy }}
 
-{% if title %}
-<h1 class='{% if title_align_center %}text-align-center{% endif %}'>{{ title }}</h1>
-{% endif %}
+					<input class='btn btn-default' type='submit' value='Submit' />
 
-<form method='POST' action=''>{% csrf_token %}
-{{ form|crispy }}
-
-<input class='btn btn-default' type='submit' value='Submit' />
-
-</form>
-</div>
-</div>
+				</form>
+		</div>
+	</div>
 {% endblock %}

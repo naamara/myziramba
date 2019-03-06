@@ -3,6 +3,89 @@
 
 <!-- Home -->
 <div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
+ <nav class="main_nav">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            
+            <div class="main_nav_content d-flex flex-row">
+
+              <!-- Categories Menu -->
+
+              <div class="cat_menu_container">
+                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                  <div class="cat_burger"><span></span><span></span><span></span></div>
+                  <div class="cat_menu_text">categories</div>
+                </div>
+
+                <ul class="cat_menu">
+                  <li><a href="#">Construction Materials <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                  <li class="hassubs">
+                    <a href="{% url 'deco_detail' %}">Home Decor <i class="fas fa-chevron-right"></i></a>
+                    <ul>
+                      <li class="hassubs">
+                        <a href="#">Furniture<i class="fas fa-chevron-right"></i></a>
+                        <ul>
+                          <li><a href="#">Bookcase<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Drawer<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Cabinetry<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Dressers<i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Bed Materials<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Kitchen Tools<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                  </li>
+                  <li class="hassubs">
+                    <a href="{% url 'elect_detail' %}">Electronic Appliances <i class="fas fa-chevron-right"></i></a>
+                    <ul>
+                      <li class="hassubs">
+                        <a href="#">Microwave oven<i class="fas fa-chevron-right"></i></a>
+                        <ul>
+                          <li><a href="#">Solo microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Grill microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Convection microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Refrigerators<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Vacuum cleaner<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Gas fireplace<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Smart Phones<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Art and Decorations<i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+              </div>
+
+              <!-- Main Nav Menu -->
+
+              <div class="main_nav_menu ml-auto">
+                <ul class="standard_dropdown main_nav_dropdown">
+                  <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/products">Shop<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/about">About Us<i class="fas fa-chevron-down"></i></a></li>
+                   <li><a href="/blog">Blog<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+              </div>
+
+              <!-- Menu Trigger -->
+
+              <div class="menu_trigger_container ml-auto">
+                <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+                  <div class="menu_burger">
+                    <div class="menu_trigger_text">menu</div>
+                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
 
 <div class="home">
 	<div class="home_background parallax-window" data-parallax="scroll" style="background-image:url({% static 'images/shop_background.jpg' %})"></div>   

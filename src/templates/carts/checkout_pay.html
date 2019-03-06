@@ -97,39 +97,9 @@
 
 
 {% block content %}
+<div>
 
 <div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
-
-
-<table class="table">
-  <tr>
-      <form role="form" method="post" id="payment-form" action="{% url 'cart_detail' %}">
-        
-    <legend>Payment Details</legend>
-
-    <div id="credit-card-errors" style="display:none">
-      <div class="alert-message block-message error" id="stripe-error-message"></div>
-    </div>
-
-    
-
-  
-
-    </form>
-   
-
-</form>
-
-  
-
-
-  </tr>
-        
-    
-  </tr> 
-  </table>
-
-
 
  <div class="row">
   <div class="col-75">
@@ -218,7 +188,8 @@
 
     </div>
   </div>
-</div> 
+</div>
+
 
 {% endblock %}
 
