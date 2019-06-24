@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('products', '0013_auto_20190419_2307'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='productfeatured',
+            name='image',
+            field=models.ImageField(upload_to=b'products/featured/'),
+        ),
+        migrations.AlterField(
+            model_name='productimage',
+            name='image',
+            field=models.ImageField(null=True, upload_to=b'products/'),
+        ),
+    ]

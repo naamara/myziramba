@@ -1,0 +1,23 @@
+
+{% load staticfiles %}
+
+{% block animation %}
+ <!-- Start WOWSlider.com BODY section -->
+  <div id="wowslider-container">
+  <div class="ws_images"><ul>
+  <li><a href="/"><img style="height:310px" src="{% static 'images/home_Decor.jpeg' %}" alt="Need to put clear pictures to this slideshow" title="" id="wows_0"/></a></li>
+  <li><a href="/"><img style="height:310px" src="{% static 'images/electronics.png' %}" alt="Need to put clear pictures to this slideshow" title="You can add description to slides!" id="wows_1"/></a></li>
+  <li><a href="/"><img style="height:310px" src="{% static 'images/const.jpg' %}" alt="Need to put clear pictures to this slideshow" title="" id="wows_2"/></a></li>
+  
+  </ul></div>
+  <div class="ws_bullets"><div>
+  <a href="#" title=""><img style="height:310px" src="{% static 'images/home_decor.jpeg' %}" alt="Need to put clear pictures to this slideshow"/>1</a>
+  <a href="#" title="You can add description to slides!"><img style=" height:310px"  src="{% static 'images/Electronics.png' %}" alt="Need to put clear pictures to this slideshow"/>2</a>
+  <a href="#" title=""><img style=" height:310px" src="{% static 'images/Const.jpeg' %}" alt="Need to put clear pictures to this slideshow"/>3</a>
+  
+  </div></div>
+    <a href="#" class="ws_frame"></a>
+    <div class="ws_shadow"></div>
+  </div>
+ {% endblock %}
+  <!-- End WOWSlider.com BODY section -->

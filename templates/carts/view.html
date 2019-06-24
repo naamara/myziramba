@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block jquery %}
+
+  function updateCart(item, qty, del){
+    var url = "{% url 'create_cart' %}" + '?' + 'item=' + item + '&qty=' + qty;
+    if(del === true){
+      url += '&delete=y';
+    }
+    return $.ajax({
+      url: url,
+      type: 'GET',
+    }).promise();
+  }
+
+  $('.update-cart').on('input', function(){
+    var qty = $(this).val();
+    if(!qty){
+    return ;
+    }
+    var item = $(this).data('item-id');
+    var self = $(this);
+    updateCart(item, qty).then(function(response){
+      console.log(response);
+      $('#cart-count-badge').text(response.cart_count);
+      self.parent().next().text('Rs '+ response.item_total);
+      $('#cart-price').text('Rs ' + response.cart_price);
+    });
+  });
+
+  $('.remove-item').click(function(event){
+    console.log($(this));
+    var item = $(this).data('item-id');
+    updateCart(item, 1, true).then(function(response){
+      window.location.reload();
+    });
+  });
+{% endblock %}
+
+
+{% block content %}
+   
+<div>         
+<div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
+           
+<legend>Shopping Cart</legend>
+
+ <div class="row">
+  <div class="col-75">
+    <div class="container">
+
+      {% for cart_item in object.cartitem_set.all %}
+
+      <form method="post"  role="form" id="payment-form" action="{% url 'cart_detail' %}">
+      {% csrf_token %}
+        <div class="row">
+          <div class="col-50">
+             <label for="Item Image">Item Image</label>
+            {% if cart_item.get_image_url %}
+              <div>
+                <img src="{{cart_item.get_image_url}}" class="img-responsive">
+              </div>
+            {% endif %}
+            <label for="Item Name">Item Name</label>
+            <h3>{{cart_item.item_name}}</h3>
+            <label for="email"> Item Price</label>
+            <h3>Ugx {{cart_item.item_total}}</h3>
+       
+          </div>
+
+          <div class="col-50">
+            <label for="email"> Quantity</label>
+            <h3><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></h3>
+            <label for="email"> Item Total</label>
+            <h3>Ugx {% widthratio cart_item.quantity 1 cart_item.item_total %}</h3>
+            <label for="cname">Remove Item</label>
+             <a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item"><i class="fa fa-trash" style="font-size: 20px; color: red; text-align: center;"></i></a>
+         
+          </div>
+
+        </div>
+     {% endfor %}
+          <table>
+            <tr align="right" class="right-align">
+              <td class="button cart_button_checkout"><a href="/products">Continue Shopping</a></td>
+              <td class="button cart_button_checkout"><a href="{% url 'cart_detail_pay' %}">Continue to payment</a></td>
+            </tr>
+          </table>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="col-25">
+    <div class="container">
+      <h4><b>Order Summary</b>
+        <span class="price" style="color:black">
+        </span></h4>
+        <span class="" style="color:black"> <b>Estimated Total Ugx {{total_price}}</b></span>   
+        
+      <a href="{% url 'cart_detail_pay' %}">
+        <input type="submit" value="Secure checkout" class="btn"></a>
+      {% for cart_item in object.cartitem_set.all %}
+      <p><a href="#">{{cart_item.item_name}}</a> <span class="price">Ugx {{cart_item.item_total}}</span> </p>
+     
+      {% endfor %}
+      <hr>
+      <p><b>Estimated Total <span class="price" style="color:black">Ugx{{total_price}}</b></span></p>
+
+
+
+   
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+       

@@ -1,0 +1,193 @@
+{% load staticfiles %}
+
+
+<!-- Home -->
+<div class="logo" style="top: 25px;"><a href="/">Ziramba</a></div>
+ <nav class="main_nav">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            
+            <div class="main_nav_content d-flex flex-row">
+
+              <!-- Categories Menu -->
+
+              <div class="cat_menu_container">
+                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                  <div class="cat_burger"><span></span><span></span><span></span></div>
+                  <div class="cat_menu_text">categories</div>
+                </div>
+
+                <ul class="cat_menu">
+                  <li><a href="#">Construction Materials <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                  <li class="hassubs">
+                    <a href="{% url 'deco_detail' %}">Home Decor <i class="fas fa-chevron-right"></i></a>
+                    <ul>
+                      <li class="hassubs">
+                        <a href="#">Furniture<i class="fas fa-chevron-right"></i></a>
+                        <ul>
+                          <li><a href="#">Bookcase<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Drawer<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Cabinetry<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Dressers<i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Bed Materials<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Kitchen Tools<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                  </li>
+                  <li class="hassubs">
+                    <a href="{% url 'elect_detail' %}">Electronic Appliances <i class="fas fa-chevron-right"></i></a>
+                    <ul>
+                      <li class="hassubs">
+                        <a href="#">Microwave oven<i class="fas fa-chevron-right"></i></a>
+                        <ul>
+                          <li><a href="#">Solo microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Grill microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                          <li><a href="#">Convection microwave oven<i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Refrigerators<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Vacuum cleaner<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Gas fireplace<i class="fas fa-chevron-right"></i></a></li>
+                      <li><a href="#">Smart Phones<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Art and Decorations<i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+              </div>
+
+              <!-- Main Nav Menu -->
+
+              <div class="main_nav_menu ml-auto">
+                <ul class="standard_dropdown main_nav_dropdown">
+                  <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/products">Shop<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/about">About Us<i class="fas fa-chevron-down"></i></a></li>
+                   <li><a href="/blog">Blog<i class="fas fa-chevron-down"></i></a></li>
+                  <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+              </div>
+
+              <!-- Menu Trigger -->
+
+              <div class="menu_trigger_container ml-auto">
+                <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+                  <div class="menu_burger">
+                    <div class="menu_trigger_text">menu</div>
+                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+<div class="home">
+	<div class="home_background parallax-window" data-parallax="scroll" style="background-image:url({% static 'images/shop_background.jpg' %})"></div>   
+	<div class="home_overlay"></div>
+	<div class="home_content d-flex flex-column align-items-center justify-content-center">
+			<h2 class="home_title">Ziramba Shop</h2>
+	</div>
+</div>
+<div class="shop">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+
+					<!-- Shop Sidebar -->
+					<div class="shop_sidebar">
+						<div class="sidebar_section">
+							<div class="sidebar_title">Categories</div>
+							<ul class="sidebar_categories">
+								<li><a href="#">Construction Materials</a></li>
+								<li><a href="#">Home Decor</a></li>
+								<li><a href="#">Hardware</a></li>
+								<li><a href="#">Smartphones & Tablets</a></li>
+								<li><a href="#">TV & Audio</a></li>
+								<li><a href="#">Gadgets</a></li>
+								<li><a href="#">Car Electronics</a></li>
+								<li><a href="#">Video Games & Consoles</a></li>
+								<li><a href="#">Accessories</a></li>
+							</ul>
+						</div>
+						<div class="sidebar_section filter_by_section">
+							<div class="sidebar_title">Filter By</div>
+							<div class="sidebar_subtitle">Price</div>
+							<div class="filter_price">
+								<div id="slider-range" class="slider_range"></div>
+								<p>Range: </p>
+								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
+							</div>
+						</div>
+						<div class="sidebar_section">
+							<div class="sidebar_subtitle color_subtitle">Color</div>
+							<ul class="colors_list">
+								<li class="color"><a href="#" style="background: #b19c83;"></a></li>
+								<li class="color"><a href="#" style="background: #000000;"></a></li>
+								<li class="color"><a href="#" style="background: #999999;"></a></li>
+								<li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
+								<li class="color"><a href="#" style="background: #df3b3b;"></a></li>
+								<li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
+							</ul>
+						</div>
+						<div class="sidebar_section">
+							<div class="sidebar_subtitle brands_subtitle">Brands</div>
+							<ul class="brands_list">
+								<li class="brand"><a href="#">Apple</a></li>
+								<li class="brand"><a href="#">Beoplay</a></li>
+								<li class="brand"><a href="#">Google</a></li>
+								<li class="brand"><a href="#">Meizu</a></li>
+								<li class="brand"><a href="#">OnePlus</a></li>
+								<li class="brand"><a href="#">Samsung</a></li>
+								<li class="brand"><a href="#">Sony</a></li>
+								<li class="brand"><a href="#">Xiaomi</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-lg-9">
+									
+					<!-- Shop Content -->
+
+					<div class="shop_content">
+										<div class="shop_bar clearfix">
+											<div class="shop_product_count"><span>32</span> products found</div>
+											<div class="shop_sorting">
+												<span>Sort by:</span>
+												<ul>
+													<li>
+														<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
+														<ul>
+															<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
+															<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
+															<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="product_grid" style="position: relative;display: flex;flex-wrap: wrap">
+																	<div class="product_grid_border"></div>
+											{% for product in object_list %}
+												
+													{% include "products/product_thumbnail.html" with product=product %}
+												
+											{% endfor %}</div>
+										
+									</div>
+								</div>
+					</div>
+		</div>
+				
+
+
+
+
